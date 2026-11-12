@@ -1,0 +1,50 @@
+{% extends 'catalogo/base.html' %}
+
+{% block title %}{{ producto.nombre|title }}{% endblock %}
+
+{% block contenido %}
+  <div class="container py-4">
+
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'catalogo:home' %}">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'catalogo:lista' %}">Catálogo</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ producto.nombre|title }}</li>
+      </ol>
+    </nav>
+
+    <div class="row g-4 align-items-start">
+      <div class="col-md-6">
+        <div class="tarjeta-imagen detalle-imagen rounded-4 shadow-sm">
+          <img src="{{ producto.imagen_url }}" alt="{{ producto.nombre|title }}" onerror="this.remove()">
+          <i class="bi bi-image imagen-respaldo"></i>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <span class="badge bg-marca mb-2"><i class="bi bi-tag"></i> {{ producto.categoria|upper }}</span>
+        {% if producto.destacado %}
+          <span class="badge bg-warning text-dark mb-2"><i class="bi bi-star-fill"></i> Destacado</span>
+        {% endif %}
+
+        <h1 class="h2">{{ producto.nombre|title }}</h1>
+        <p class="text-secondary">{{ producto.descripcion|default:"Sin descripción." }}</p>
+
+        <p class="precio fs-2 mb-3">S/ {{ producto.precio|floatformat:2 }}</p>
+
+        <ul class="list-unstyled text-secondary small">
+          <li><i class="bi bi-check-circle text-success"></i>
+            {{ producto.disponible|yesno:"Disponible,Agotado" }}</li>
+          <li><i class="bi bi-calendar3"></i>
+            Agregado el {{ producto.fecha_creacion|date:"d/m/Y" }}</li>
+          <li><i class="bi bi-hash"></i> Código: {{ producto.id|stringformat:"04d" }}</li>
+        </ul>
+
+        <a href="{% url 'catalogo:lista' %}?categoria={{ producto.categoria|urlencode }}"
+           class="btn btn-outline-secondary">
+          <i class="bi bi-arrow-left"></i> Más de {{ producto.categoria|lower }}
+        </a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,75 @@
+/* Estilos propios de FoodDelivery */
+:root {
+  --marca: #e4572e;
+  --marca-oscuro: #c2401b;
+}
+
+body { background: #faf7f5; }
+
+.bg-marca { background-color: var(--marca) !important; }
+.text-marca { color: var(--marca) !important; }
+
+.btn-marca {
+  background-color: var(--marca);
+  border-color: var(--marca);
+  color: #fff;
+}
+.btn-marca:hover,
+.btn-marca:focus {
+  background-color: var(--marca-oscuro);
+  border-color: var(--marca-oscuro);
+  color: #fff;
+}
+
+/* Portada */
+.portada {
+  background: linear-gradient(135deg, var(--marca) 0%, #f29e4c 100%);
+  padding-bottom: 2rem;
+}
+.mt-n4 { margin-top: -1.5rem; }
+
+/* Tarjetas de resumen */
+.resumen {
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  border: 0;
+}
+.resumen i { font-size: 1.8rem; color: var(--marca); }
+
+/* Tarjeta de producto */
+.tarjeta-producto { border: 0; transition: transform .15s ease, box-shadow .15s ease; }
+.tarjeta-producto:hover { transform: translateY(-3px); box-shadow: 0 .5rem 1.25rem rgba(0,0,0,.12) !important; }
+
+.tarjeta-imagen {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: #f1e9e4;
+  overflow: hidden;
+  border-radius: var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius) 0 0;
+}
+.tarjeta-imagen img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+/* Ícono que se ve si la imagen no carga */
+.imagen-respaldo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  color: #c9b8ae;
+}
+.etiqueta { position: absolute; top: .75rem; left: .75rem; z-index: 2; }
+
+.detalle-imagen { border-radius: 1rem; }
+
+.precio { font-weight: 700; color: var(--marca); }
+
+.breadcrumb a { color: var(--marca); }

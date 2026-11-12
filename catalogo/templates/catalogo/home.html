@@ -1,0 +1,54 @@
+{% extends 'catalogo/base.html' %}
+
+{% block title %}{{ titulo }}{% endblock %}
+
+{% block contenido %}
+  <!-- Portada -->
+  <section class="portada text-white">
+    <div class="container py-5">
+      <h1 class="display-5 fw-bold">Tu comida favorita, <br>a un clic de distancia</h1>
+      <p class="lead mb-4">Hamburguesas, pizzas, pollo y más, preparados al momento.</p>
+      <a href="{% url 'catalogo:lista' %}" class="btn btn-light btn-lg fw-semibold">
+        <i class="bi bi-grid-3x3-gap"></i> Ver catálogo
+      </a>
+    </div>
+  </section>
+
+  <!-- Resumen -->
+  <section class="container mt-n4">
+    <div class="row g-3">
+      <div class="col-md-4">
+        <div class="card resumen shadow-sm">
+          <i class="bi bi-basket2"></i>
+          <div><strong>{{ resumen.total_productos }}</strong> producto{{ resumen.total_productos|pluralize }} disponible{{ resumen.total_productos|pluralize }}</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card resumen shadow-sm">
+          <i class="bi bi-tags"></i>
+          <div><strong>{{ resumen.total_categorias }}</strong> categoría{{ resumen.total_categorias|pluralize }}</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card resumen shadow-sm">
+          <i class="bi bi-cash-coin"></i>
+          <div>Desde <strong>S/ {{ resumen.precio_minimo|floatformat:2 }}</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Destacados -->
+  <section class="container mt-5">
+    <h2 class="h3 mb-4"><i class="bi bi-star-fill text-warning"></i> Destacados de la semana</h2>
+    <div class="row g-4">
+      {% for p in destacados %}
+        <div class="col-sm-6 col-lg-4">
+          {% include 'catalogo/_tarjeta_producto.html' with producto=p %}
+        </div>
+      {% empty %}
+        <p class="text-secondary">Aún no hay productos destacados.</p>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

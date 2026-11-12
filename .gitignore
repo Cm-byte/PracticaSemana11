@@ -1,0 +1,25 @@
+venv/
+.venv/
+env/
+
+# Python (archivos compilados que se generan solos)
+__pycache__/
+*.pyc
+*.pyo
+
+
+db.sqlite3
+db.sqlite3-journal
+
+
+.env
+
+# Archivos generados por Django
+media/
+staticfiles/
+
+# Editor y sistema operativo
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
